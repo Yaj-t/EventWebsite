@@ -17,8 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
-        // Successful login, redirect to a dashboard or home page
+        $row = $result->fetch_assoc();
         $_SESSION['email'] = $email;
+        $_SESSION['user_id'] = $row['user_id'];
         header("Location: dashboard.php");
         exit;
     } else {
