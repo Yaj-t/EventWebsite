@@ -47,7 +47,9 @@ if (isset($_SESSION['error'])) {
 
         // Retrieve events created by the current user
         $userId = $_SESSION['user_id'];
-        $sql = "SELECT * FROM events WHERE user_id = $userId";
+        $currentDate = date("Y-m-d");
+        $sql = "SELECT * FROM events ORDER BY date DESC";
+
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {

@@ -17,7 +17,9 @@
         }
 
         // Retrieve events from the database
-        $sql = "SELECT * FROM events";
+        $currentDate = date("Y-m-d");
+        $sql = "SELECT * FROM events WHERE date >= '$currentDate' ORDER BY date ASC";
+
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
