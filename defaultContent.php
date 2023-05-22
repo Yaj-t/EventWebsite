@@ -1,3 +1,30 @@
+<head>
+  <style>
+    .jumbotron {
+      background-image: url(background1.jpg);
+      background-size: cover;
+      background-position: 50% 50%;
+      color:white;
+      text-shadow: 2px 2px 4px #000000;
+      animation: slide 15s infinite;
+    }
+
+    @keyframes slide {
+      25% {
+        background-image: url(background2.jpg);
+      }
+      50% {
+        background-image: url(background3.jpg);
+      }
+      75% {
+        background-image: url(background4.jpg);
+      }
+      100% {
+        background-image: url(background1.jpg);
+      }
+    }
+  </style>
+</head>
 <section class="jumbotron text-center">
     <div class="container">
       <h1 class="display-4">Discover Exciting Events</h1>

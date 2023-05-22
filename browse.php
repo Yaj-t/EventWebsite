@@ -33,6 +33,10 @@
         .pagination a:hover {
             background-color: #ddd;
         }
+
+        .card {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -68,7 +72,7 @@
         }
 
         // Retrieve events within the specified date range
-        $limit = 10; // Maximum number of events per page
+        $limit = 12; // Maximum number of events per page
 
         // Get the total count of events
         $countSql = "SELECT COUNT(*) AS total FROM events WHERE date >= '$startDate' AND date <= '$endDate'";
@@ -90,32 +94,20 @@
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            // Display events in a table
-            echo '<table class="table">
-                    <thead>
-                        <tr>
-                            <th>Event Name</th>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Location</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>';
-
-            // Loop through each event and display its details
+            // Display events as cards
+            echo '<div class="card-columns">';
             while ($row = $result->fetch_assoc()) {
-                echo '<tr>
-                        <td>'.$row["title"].'</td>
-                        <td>'.$row["date"].'</td>
-                        <td>'.$row["time"].'</td>
-                        <td>'.$row["location"].'</td>
-                        <td>'.$row["description"].'</td>
-                    </tr>';
+                echo '<div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">'.$row["title"].'</h5>
+                            <p class="card-text">'.$row["description"].'</p>
+                            <p class="card-text"><strong>Date:</strong> '.$row["date"].'</p>
+                            <p class="card-text"><strong>Time:</strong> '.$row["time"].'</p>
+                            <p class="card-text"><strong>Location:</strong> '.$row["location"].'</p>
+                        </div>
+                    </div>';
             }
-
-            echo '</tbody></table>';
-
+            echo '</div>';
             // Display pagination buttons
             echo '<div class="pagination-container">';
             echo '<div class="pagination">';
