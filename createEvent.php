@@ -11,19 +11,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     include 'config.php';
 
-    // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Prepare and execute the database insertion query
     $sql = "INSERT INTO events (user_id, title, description, date, time, location) VALUES ('$host', '$eventName', '$eventDescription', '$eventDate', '$eventTime', '$eventLocation')";
 
     if ($conn->query($sql) === TRUE) {
-        // Event created successfully
         $_SESSION['message'] = "Event created successfully!";
     } else {
-        // Error occurred during event creation
         $_SESSION['error'] = "Error creating event: " . $conn->error;
     }
 

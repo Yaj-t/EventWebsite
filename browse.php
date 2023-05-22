@@ -11,19 +11,16 @@
         <?php
         include'config.php';
 
-        // Check connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        // Retrieve events from the database
         $currentDate = date("Y-m-d");
         $sql = "SELECT * FROM events WHERE date >= '$currentDate' ORDER BY date ASC";
 
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            // Display events in a table
             echo '<table class="table">
                     <thead>
                         <tr>
@@ -46,7 +43,6 @@
 
             echo '</tbody></table>';
         } else {
-            // No events found
             echo 'No events found.';
         }
 

@@ -73,7 +73,6 @@
         
     </div>
   </nav>
-<!-- Modal for Create Event -->
 <div class="modal" id="create-event-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

@@ -1,33 +1,28 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
+
     $name = $_POST["name"];
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    // Validate the form data
     $errors = [];
 
-    // Validate name
     if (empty($name)) {
         $errors[] = "Name is required.";
     }
 
-    // Validate email
     if (empty($email)) {
         $errors[] = "Email is required.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Invalid email format.";
     }
 
-    // Validate password
     if (empty($password)) {
         $errors[] = "Password is required.";
     } elseif (strlen($password) < 6) {
         $errors[] = "Password must be at least 6 characters long.";
     }
 
-    // If there are validation errors, display them to the user
     if (!empty($errors)) {
         echo '<div class="alert alert-danger">';
         echo '<ul>';
@@ -37,18 +32,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '</ul>';
         echo '</div>';
     } else {
-        // Perform database insertion
-        // Replace the following code with your actual database handling code
-
-        // Create a database connection (example assumes MySQL)
+    
         include 'config.php';
 
-        // Check connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        // Prepare and execute the database insertion query
         $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
 
         if ($conn->query($sql) === TRUE) {

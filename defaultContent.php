@@ -1,4 +1,3 @@
-<!-- Hero section -->
 <section class="jumbotron text-center">
     <div class="container">
       <h1 class="display-4">Discover Exciting Events</h1>
@@ -6,9 +5,7 @@
       <a id href="#browse-content" class="btn btn-primary">Browse Events</a>
     </div>
   </section>
-
-  <!-- About Us section -->
-  <section class="container my-5">
+<section class="container my-5">
     <h2 class="text-center mb-4">About Us</h2>
     <div class="row">
       <div class="col-md-6">

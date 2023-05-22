@@ -8,7 +8,6 @@
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Edit event form -->
                 <form action="updateEvent.php" method="POST">
                     <input type="hidden" name="event_id" value="<?php echo $row["event_id"]; ?>">
                     <div class="form-group">

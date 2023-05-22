@@ -1,18 +1,16 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
+
     session_start();
     $email = $_POST["email"];
     $password = $_POST["password"];
 
     include 'config.php';
 
-    // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Prepare and execute the database retrieval query
     $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
     $result = $conn->query($sql);
 
@@ -23,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: dashboard.php");
         exit;
     } else {
-        // Invalid credentials, display error message
         echo '<div class="alert alert-danger">Invalid email or password. Please try again.</div>';
     }
 
