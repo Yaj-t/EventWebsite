@@ -60,6 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <style>
         body {
             background-color: #f8f9fa;
+            background-image: url("eventPic.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         .signup-container {
