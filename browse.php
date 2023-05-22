@@ -3,6 +3,37 @@
 <head>
     <title>Event Website - Browse Events</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+         .pagination-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .pagination {
+            display: inline-block;
+        }
+
+        .pagination a {
+            display: inline-block;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #000;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .pagination a:hover {
+            background-color: #ddd;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-4">
@@ -37,7 +68,25 @@
         }
 
         // Retrieve events within the specified date range
-        $sql = "SELECT * FROM events WHERE date >= '$startDate' AND date <= '$endDate' ORDER BY date ASC";
+        $limit = 10; // Maximum number of events per page
+
+        // Get the total count of events
+        $countSql = "SELECT COUNT(*) AS total FROM events WHERE date >= '$startDate' AND date <= '$endDate'";
+        $countResult = $conn->query($countSql);
+        $row = $countResult->fetch_assoc();
+        $totalEvents = $row['total'];
+
+        // Calculate the number of pages
+        $totalPages = ceil($totalEvents / $limit);
+
+        // Get the current page from the URL parameter
+        $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+
+        // Calculate the offset for the events query
+        $offset = ($currentPage - 1) * $limit;
+
+        // Retrieve events for the current page
+        $sql = "SELECT * FROM events WHERE date >= '$startDate' AND date <= '$endDate' ORDER BY date ASC LIMIT $limit OFFSET $offset";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -66,6 +115,21 @@
             }
 
             echo '</tbody></table>';
+
+            // Display pagination buttons
+            echo '<div class="pagination-container">';
+            echo '<div class="pagination">';
+            if ($currentPage > 1) {
+                echo '<a href="?page='.($currentPage - 1).'&start-date='.$startDate.'&end-date='.$endDate.'">Previous</a>';
+            }
+            for ($i = 1; $i <= $totalPages; $i++) {
+                echo '<a href="?page='.$i.'&start-date='.$startDate.'&end-date='.$endDate.'" class="'.($currentPage == $i ? 'active' : '').'">'.$i.'</a>';
+            }
+            if ($currentPage < $totalPages) {
+                echo '<a href="?page='.($currentPage + 1).'&start-date='.$startDate.'&end-date='.$endDate.'">Next</a>';
+            }
+            echo '</div>';
+            echo '</div>';
         } else {
             echo 'No events found within the specified date range.';
         }

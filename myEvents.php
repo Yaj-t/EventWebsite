@@ -22,27 +22,34 @@
       padding: 20px;
     }
 
-    .pagination {
+    .pagination-container {
+      display: flex;
+      justify-content: center;
       margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .pagination {
+      display: inline-block;
     }
 
     .pagination a {
       display: inline-block;
-      padding: 5px 10px;
-      margin-right: 5px;
-      background-color: #f4f4f4;
-      border: 1px solid #ccc;
-      color: #333;
+      padding: 8px 16px;
       text-decoration: none;
+      color: #000;
+      background-color: #f2f2f2;
+      border-radius: 5px;
+      margin-right: 5px;
+    }
+
+    .pagination a.active {
+      background-color: #4CAF50;
+      color: white;
     }
 
     .pagination a:hover {
       background-color: #ddd;
-    }
-
-    .pagination .active {
-      background-color: #007bff;
-      color: #fff;
     }
   </style>
 </head>
@@ -109,6 +116,7 @@
             echo '</tbody></table>';
 
             // Display pagination buttons
+            echo '<div class="pagination-container">';
             echo '<div class="pagination">';
             if ($currentPage > 1) {
                 echo '<a href="?page=' . ($currentPage - 1) . '">Prev</a>';
@@ -123,6 +131,7 @@
             if ($currentPage < $totalPages) {
                 echo '<a href="?page=' . ($currentPage + 1) . '">Next</a>';
             }
+            echo '</div>';
             echo '</div>';
         } else {
             echo 'No events found.';
