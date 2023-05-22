@@ -15,6 +15,7 @@ GROUPR is a platform that allows users to browse, create, and manage events. It 
 - [License](#license)
 
 ## Features
+
   - Browse events: Users can view a list of events, filter them by date range, and see event details.
   - Create events: Users can create new events by providing event name, description, date, time, and location.
   - My Events: Users can view and manage events they have created, including editing and deleting events.
@@ -22,6 +23,7 @@ GROUPR is a platform that allows users to browse, create, and manage events. It 
   - Responsive Design: The website is optimized for various screen sizes, including desktop and mobile devices.
   
 ## Technologies Used
+
   - The following technologies were used in the development of the Website:
   - HTML5 and CSS3: Markup and styling of web pages.
   - JavaScript: Client-side scripting for interactive functionality.
@@ -30,6 +32,7 @@ GROUPR is a platform that allows users to browse, create, and manage events. It 
   - Bootstrap: CSS framework for responsive design and UI components.
   
 ## Installation
+
   1. Clone the repository to your local machine: git clone https://github.com/Yaj-t/EventWebsite.git
   2. Create a new MySQL database for the project.
   3. Import the provided SQL dump file (events.sql) into your database to set up the required tables and sample data.
@@ -37,6 +40,7 @@ GROUPR is a platform that allows users to browse, create, and manage events. It 
   5. Deploy the project to a web server or run it locally using a local development environment like XAMPP, WAMP, or MAMP.
  
 ## Usage
+
   - Access the Website through a web browser by visiting the URL where you deployed the project.
   - Register a new user account or log in if you already have one.
   - Browse events: Explore the available events, filter them by date range, and view event details.
@@ -44,6 +48,7 @@ GROUPR is a platform that allows users to browse, create, and manage events. It 
   - My Events: Access the "My Events" page to view and manage the events you have created. You can edit event details, delete events, and view event-specific actions.
 
 ## Testing
+
   The Website can be tested using various methods. It is recommended to perform both manual and automated testing to ensure the functionality and user  experience of the website. Here are some testing scenarios to consider:
   - User Registration and Login: Test the registration process by creating new user accounts and logging in with valid credentials. Verify that the user authentication system works as expected.
   - Event Creation: Test the event creation process by submitting the event creation form with different inputs. Ensure that events are created correctly and stored in the database.
@@ -52,12 +57,14 @@ GROUPR is a platform that allows users to browse, create, and manage events. It 
   - Responsive Design: Test the website on different devices and screen sizes to ensure that the layout and user interface are responsive and provide a seamless experience.
     
 ## Limitations
+
   The current version of the Website has the following limitations:
   - The search functionality is limited to filtering events by date range. Additional search options, such as by location or category, could be implemented in future versions.
   - The event editing and deletion features are only available to the user who created the event. Collaborative event management among multiple users could be considered for future enhancements.
   - The user interface design and styling can be further improved to enhance the overall visual appeal and user experience of the website.4
   
 ## Future Enhancements
+
   The Website can be further enhanced with additional features and improvements. Some potential ideas for future development include:
   - Event Categories: Implement a categorization system to classify events into different categories for better organization and searchability.
   - Event RSVP: Allow users to RSVP to events they are interested in attending, providing event organizers with a better understanding of attendance.
@@ -67,7 +74,15 @@ GROUPR is a platform that allows users to browse, create, and manage events. It 
   - Event Recommendations: Implement a recommendation system that suggests events to users based on their interests and past activities.
   
 ## Acknowledgments
+
   We would like to acknowledge the contributions of the development team and express gratitude to the project advisors and mentors.
 
 ## License
-  The   Website is released under the MIT License.
+
+  This project is licensed under the [MIT License](LICENSE) - see the [LICENSE](LICENSE) file for details.
+
+## Author
+
+Yaj-t
+
+
