@@ -78,6 +78,6 @@ GROUPR is a platform that allows users to browse, create, and manage events. It 
 
 ## Author
 
-Yaj-t
+[Yaj-t](https://github.com/Yaj-t)
 
 
