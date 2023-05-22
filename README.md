@@ -11,7 +11,6 @@ GROUPR is a platform that allows users to browse, create, and manage events. It 
 - [Testing](#testing)
 - [Limitations](#limitations)
 - [Future Enhancements](#future-enhancements)
-- [Acknowledgments](#acknowledgments)
 - [License](#license)
 
 ## Features
@@ -72,10 +71,6 @@ GROUPR is a platform that allows users to browse, create, and manage events. It 
   - Social Sharing: Integrate social media sharing functionality to allow users to share events on their social media platforms.
   - User Profiles: Enhance user profiles with additional information and customization options.
   - Event Recommendations: Implement a recommendation system that suggests events to users based on their interests and past activities.
-  
-## Acknowledgments
-
-  We would like to acknowledge the contributions of the development team and express gratitude to the project advisors and mentors.
 
 ## License
 
