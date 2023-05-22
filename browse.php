@@ -40,7 +40,7 @@
         <h1>Browse Events</h1>
         
         <form method="GET" action="" class="mb-4">
-            <div class="form-row">
+            <div class="form-row align-items-end">
                 <div class="col">
                     <label for="start-date">Start Date:</label>
                     <input type="date" id="start-date" name="start-date" class="form-control" value="" required>
