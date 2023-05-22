@@ -1,9 +1,11 @@
 <?php
 session_start();
+// Check if the user is not logged in
 if (!isset($_SESSION["email"])) {
   header("location: logout.php");
 }
 
+// Display success message
 if (isset($_SESSION['message'])) {
     echo '<div class="alert success">';
     echo $_SESSION['message'];
@@ -12,6 +14,7 @@ if (isset($_SESSION['message'])) {
     unset($_SESSION['message']);
 }
 
+// Display error message
 if (isset($_SESSION['error'])) {
     echo '<div class="alert error">';
     echo $_SESSION['error'];
@@ -56,6 +59,7 @@ if (isset($_SESSION['error'])) {
                     <tbody>';
 
             while ($row = $result->fetch_assoc()) {
+                // Display event details
                 echo '<tr>
                         <td>' . $row["title"] . '</td>
                         <td>' . $row["date"] . '</td>
@@ -66,9 +70,9 @@ if (isset($_SESSION['error'])) {
                             <a href="#" data-toggle="modal" data-target="#deleteModal' . $row["event_id"] . '">Delete</a>
                         </td>
                     </tr>';
-
+                // Include edit event modal
                 include'editEvent.php';
-
+                // Include delete event modal
                 include'deleteEvent.php';
             }
 

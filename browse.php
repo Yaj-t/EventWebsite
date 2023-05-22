@@ -11,13 +11,14 @@
         <?php
         include'config.php';
 
-
+         // Retrieve events from the database
         $currentDate = date("Y-m-d");
         $sql = "SELECT * FROM events WHERE date >= '$currentDate' ORDER BY date ASC";
 
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
+             // Display events in a table
             echo '<table class="table">
                     <thead>
                         <tr>
@@ -28,7 +29,7 @@
                         </tr>
                     </thead>
                     <tbody>';
-
+             // Loop through each event and display its details
             while ($row = $result->fetch_assoc()) {
                 echo '<tr>
                         <td>'.$row["title"].'</td>

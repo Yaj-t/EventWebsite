@@ -10,9 +10,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $eventLocation = $_POST["location"];
 
     include 'config.php';
-
+    // Prepare SQL query
     $sql = "INSERT INTO events (user_id, title, description, date, time, location) VALUES ('$host', '$eventName', '$eventDescription', '$eventDate', '$eventTime', '$eventLocation')";
 
+    // Execute SQL query and handle success/error
     if ($conn->query($sql) === TRUE) {
         $_SESSION['message'] = "Event created successfully!";
     } else {
@@ -20,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $conn->close();
-
+    // Redirect to the previous page
     header("Location: " . $_SERVER["HTTP_REFERER"]);
     exit();
 }

@@ -1,9 +1,12 @@
 <?php 
 session_start();
+
+// Check if user is logged in
 if(!isset($_SESSION["email"])){
   header("location: logout.php");
 };
 
+// Display success message
 if (isset($_SESSION['message'])) {
     echo '<div class="alert success">';
     echo $_SESSION['message'];
@@ -12,6 +15,7 @@ if (isset($_SESSION['message'])) {
     unset($_SESSION['message']);
 }
 
+// Display error message
 if (isset($_SESSION['error'])) {
     echo '<div class="alert error">';
     echo $_SESSION['error'];

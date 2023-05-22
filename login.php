@@ -2,24 +2,33 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     session_start();
+    // Retrieve form data
     $email = $_POST["email"];
     $password = $_POST["password"];
 
+    // Include database configuration
     include 'config.php';
 
+    // Prepare SQL statement to select user
     $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
     $result = $conn->query($sql);
 
+    // Check if user exists
     if ($result->num_rows == 1) {
+        // Fetch user data
         $row = $result->fetch_assoc();
+        // Set session variables
         $_SESSION['email'] = $email;
         $_SESSION['user_id'] = $row['user_id'];
+        // Redirect to dashboard    
         header("Location: dashboard.php");
         exit;
     } else {
+        // Display error message for invalid login
         echo '<div class="alert alert-danger">Invalid email or password. Please try again.</div>';
     }
 
+    // Close database connection
     $conn->close();
 }
 ?>

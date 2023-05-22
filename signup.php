@@ -1,12 +1,12 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    // Retrieve form data
     $name = $_POST["name"];
     $email = $_POST["email"];
     $password = $_POST["password"];
 
     $errors = [];
-
+    // Validate form data
     if (empty($name)) {
         $errors[] = "Name is required.";
     }
@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Password must be at least 6 characters long.";
     }
 
+    // Display error messages if any
     if (!empty($errors)) {
         echo '<div class="alert alert-danger">';
         echo '<ul>';
@@ -34,7 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
     
         include 'config.php';
-
+        
+        // Insert user data into the database
         $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
 
         if ($conn->query($sql) === TRUE) {

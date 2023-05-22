@@ -1,13 +1,16 @@
 <?php
 session_start();
 
+// Check if the user is logged in
 if (!isset($_SESSION["email"])) {
     header("Location: logout.php");
     exit();
 }
 
+// Process the form submission if it's a POST request
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    // Retrieve form data
     $eventId = $_POST["event_id"];
     $eventName = $_POST["event-name"];
     $eventDescription = $_POST["event-description"];
@@ -16,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $eventLocation = $_POST["location"];
 
     include 'config.php';
-
+    // Update the event in the database
     $sql = "UPDATE events SET title = '$eventName', description = '$eventDescription', date = '$eventDate', time = '$eventTime', location = '$eventLocation' WHERE event_id = '$eventId'";
 
     if ($conn->query($sql) === TRUE) {
@@ -26,11 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     $conn->close();
+} 
+    // Redirect back to the previous page
+    header("Location: " . $_SERVER["HTTP_REFERER"]);
+    exit();
 
-    header("Location: " . $_SERVER["HTTP_REFERER"]);
-    exit();
-} else {
-    header("Location: " . $_SERVER["HTTP_REFERER"]);
-    exit();
-}
 ?>
