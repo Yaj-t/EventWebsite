@@ -1,28 +1,3 @@
-<?php
-session_start();
-// Check if the user is not logged in
-if (!isset($_SESSION["email"])) {
-  header("location: logout.php");
-}
-
-// Display success message
-if (isset($_SESSION['message'])) {
-    echo '<div class="alert success">';
-    echo $_SESSION['message'];
-    echo '</div>';
-
-    unset($_SESSION['message']);
-}
-
-// Display error message
-if (isset($_SESSION['error'])) {
-    echo '<div class="alert error">';
-    echo $_SESSION['error'];
-    echo '</div>';
-
-    unset($_SESSION['error']);
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,19 +21,58 @@ if (isset($_SESSION['error'])) {
       color: white;
       padding: 20px;
     }
+
+    .pagination {
+      margin-top: 20px;
+    }
+
+    .pagination a {
+      display: inline-block;
+      padding: 5px 10px;
+      margin-right: 5px;
+      background-color: #f4f4f4;
+      border: 1px solid #ccc;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .pagination a:hover {
+      background-color: #ddd;
+    }
+
+    .pagination .active {
+      background-color: #007bff;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
+    <?php session_start(); include 'navbar.php'; ?>
     <div class="content container mt-4">
         <h1>My Events</h1>
         <?php
-        include 'config.php';
-
         $userId = $_SESSION['user_id'];
         $currentDate = date("Y-m-d");
-        $sql = "SELECT * FROM events WHERE user_id = $userId ORDER BY date DESC";
+        $limit = 10; // Maximum number of events per page
 
+        // Get the total count of events
+        include'config.php';
+        $countSql = "SELECT COUNT(*) AS total FROM events WHERE user_id = $userId";
+        $countResult = $conn->query($countSql);
+        $row = $countResult->fetch_assoc();
+        $totalEvents = $row['total'];
+
+        // Calculate the number of pages
+        $totalPages = ceil($totalEvents / $limit);
+
+        // Get the current page from the URL parameter
+        $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+
+        // Calculate the offset for the events query
+        $offset = ($currentPage - 1) * $limit;
+
+        // Retrieve events for the current page
+        $sql = "SELECT * FROM events WHERE user_id = $userId ORDER BY date LIMIT $limit OFFSET $offset";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -87,12 +101,29 @@ if (isset($_SESSION['error'])) {
                         </td>
                     </tr>';
                 // Include edit event modal
-                include'editEvent.php';
+                include 'editEvent.php';
                 // Include delete event modal
-                include'deleteEvent.php';
+                include 'deleteEvent.php';
             }
 
             echo '</tbody></table>';
+
+            // Display pagination buttons
+            echo '<div class="pagination">';
+            if ($currentPage > 1) {
+                echo '<a href="?page=' . ($currentPage - 1) . '">Prev</a>';
+            }
+            for ($i = 1; $i <= $totalPages; $i++) {
+                if ($i == $currentPage) {
+                    echo '<a href="?page=' . $i . '" class="active">' . $i . '</a>';
+                } else {
+                    echo '<a href="?page=' . $i . '">' . $i . '</a>';
+                }
+            }
+            if ($currentPage < $totalPages) {
+                echo '<a href="?page=' . ($currentPage + 1) . '">Next</a>';
+            }
+            echo '</div>';
         } else {
             echo 'No events found.';
         }
@@ -101,9 +132,8 @@ if (isset($_SESSION['error'])) {
         ?>
     </div>
     <div class="footer">
-        <?php include'footer.html';?>
+        <?php include 'footer.html'; ?>
     </div>
-    
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
