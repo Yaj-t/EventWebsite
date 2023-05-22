@@ -33,18 +33,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '</ul>';
         echo '</div>';
     } else {
-    
         include 'config.php';
         
-        // Insert user data into the database
-        $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
+        // Check if email already exists
+        $existingEmailQuery = "SELECT * FROM users WHERE email='$email'";
+        $existingEmailResult = $conn->query($existingEmailQuery);
 
-        if ($conn->query($sql) === TRUE) {
-            echo '<div class="alert success">';
-            echo "Signup successful! You can now <a href='login.php'>login</a> to your account.";
-            echo '</div>';
+        if ($existingEmailResult->num_rows > 0) {
+            echo '<div class="alert alert-danger">Email already exists. Please choose a different email.</div>';
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            // Hash the password
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            // Insert user data into the database with the hashed password
+            $insertQuery = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$hashedPassword')";
+
+            if ($conn->query($insertQuery) === TRUE) {
+                echo '<div class="alert success">';
+                echo "Signup successful! You can now <a href='login.php'>login</a> to your account.";
+                echo '</div>';  
+            } else {
+                echo "Error: " . $insertQuery . "<br>" . $conn->error;
+            }
         }
 
         $conn->close();
