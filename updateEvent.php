@@ -17,11 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     include 'config.php';
 
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
     $sql = "UPDATE events SET title = '$eventName', description = '$eventDescription', date = '$eventDate', time = '$eventTime', location = '$eventLocation' WHERE event_id = '$eventId'";
 
     if ($conn->query($sql) === TRUE) {

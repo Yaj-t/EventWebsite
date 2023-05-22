@@ -7,13 +7,10 @@
 <body>
     <div class="container mt-4">
         <h1>Browse Events</h1>
-
+        
         <?php
         include'config.php';
 
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
 
         $currentDate = date("Y-m-d");
         $sql = "SELECT * FROM events WHERE date >= '$currentDate' ORDER BY date ASC";

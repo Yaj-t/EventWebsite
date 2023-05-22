@@ -36,10 +36,6 @@ if (isset($_SESSION['error'])) {
         <?php
         include 'config.php';
 
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
         $userId = $_SESSION['user_id'];
         $currentDate = date("Y-m-d");
         $sql = "SELECT * FROM events WHERE user_id = $userId ORDER BY date DESC";

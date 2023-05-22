@@ -11,10 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     include 'config.php';
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
     $sql = "INSERT INTO events (user_id, title, description, date, time, location) VALUES ('$host', '$eventName', '$eventDescription', '$eventDate', '$eventTime', '$eventLocation')";
 
     if ($conn->query($sql) === TRUE) {
