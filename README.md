@@ -12,6 +12,7 @@ GROUPR is a platform that allows users to browse, create, and manage events. It 
 - [Limitations](#limitations)
 - [Future Enhancements](#future-enhancements)
 - [License](#license)
+- [Author](#author)
 
 ## Features
 
