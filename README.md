@@ -1,6 +1,6 @@
 #GROUPR
 
-GROUPR is a platform that allows users to browse, create, and manage events. It provides a user-friendly interface for finding exciting events and creating new ones. This README file provides an overview of the project, installation instructions, usage guidelines, testing information, limitations, future enhancements, acknowledgments, and contact details.
+GROUPR is a platform that allows users to browse, create, and manage events. It provides a user-friendly interface for finding exciting events and creating new ones. This README file provides an overview of the project, installation instructions, usage guidelines, testing information, limitations, future enhancements, contact details, and author.
 
 ## Table of Contents
 
