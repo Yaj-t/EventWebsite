@@ -28,13 +28,29 @@ if (isset($_SESSION['error'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Event Website</title>
-
+  <title>GROUPR</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .content {
+      flex: 1;
+    }
+
+    footer {
+      background-color: #343a40;
+      color: white;
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
     <?php include 'navbar.php'; ?>
-    <div class="container mt-4">
+    <div class="content container mt-4">
         <h1>My Events</h1>
         <?php
         include 'config.php';
@@ -84,7 +100,10 @@ if (isset($_SESSION['error'])) {
         $conn->close();
         ?>
     </div>
-    <?php include'footer.html';?>
+    <div class="footer">
+        <?php include'footer.html';?>
+    </div>
+    
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
