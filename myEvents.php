@@ -90,6 +90,7 @@
                             <th>Date</th>
                             <th>Time</th>
                             <th>Location</th>
+                            <th>Description</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -102,6 +103,7 @@
                         <td>' . $row["date"] . '</td>
                         <td>' . $row["time"] . '</td>
                         <td>' . $row["location"] . '</td>
+                        <td>' . $row["description"] . '</td>
                         <td>
                             <a href="#" data-toggle="modal" data-target="#editModal' . $row["event_id"] . '">Edit</a> |
                             <a href="#" data-toggle="modal" data-target="#deleteModal' . $row["event_id"] . '">Delete</a>
